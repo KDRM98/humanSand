@@ -2,6 +2,7 @@
 import datetime
 import streamlit as st
 import pandas as pd
+from PIL import Image
 
 def main():
     """코드 작성""" 
@@ -82,6 +83,69 @@ def main():
         "When\'s your birthday",
         datetime.date(2019,7,6))
     st.write('Your birthday is :', d)
+
+    # ---------------------------------------------
+
+    # selectbox
+    programings=['Python', 'Java','HTML', 'CSS', 'JS']
+    choice = st.selectbox('프로그래밍 언어:', programings)
+    st.write(f'{choice} 언어를 선택함')
+
+    # Multiple Selection
+    spoken_lang=("영어", "일본어", "중국어", "독일어")
+    mylangchoice = st.multiselect("언어 선택", spoken_lang, default="영어")
+    st.write("선택:", mylangchoice)
+
+    # Slider
+    age = st.slider('나이', 1, 120)
+    st.write(age)
+
+    # color = st.select_slider('색상 선택:',
+    #                          options = ['노란색', '빨간색', '파란색', '검정색', '흰색'],
+    #                          value = ("노란색", "흰색"))
+    # st.write(color)
+
+    start_color, end_color = st.select_slider('색상 선택:',
+                             options = ['노란색', '빨간색', '파란색', '검정색', '흰색'],
+                             value = ("노란색", "흰색"))
+    st.write(start_color, end_color)
+    
+    ## 멀티 미디어 파일
+    img = Image.open('data/image_03.jpg')
+    st.image(img)
+    
+    img_url = 'https://www.shutterstock.com/image-photo/portrait-cute-pomeranian-dog-park-260nw-1814041268.jpg'
+    st.image(img_url)
+
+    # 비디오 출력
+    # 컨텍스트 매니저 : chatGPT 물어보기
+    with open('data/secret_of_success.mp4', 'rb') as rb:
+        video_file = rb.read()
+        st.video(video_file, start_time=1)
+
+    # 오디오 출력
+    with open('data/song.mp3', 'rb') as rb:
+        audio_file = rb.read()
+        st.audio(audio_file, format='audio/mp3')
+
+    # 유튜브 비디오 출력
+    
+    # text
+    fname=st.text_input('입력해주세요')
+    st.title(fname)
+
+    message = st.text_area('입력해주세요', height=300)
+    st.write(message)
+
+    nums = st.number_input('숫자 입력')
+    st.write(nums)
+
+    mytime = st.time_input('시간')
+    st.write(mytime)
+
+    # color picker
+    color = st.color_picker('색상 선택')
+    st.write(color)
 
 if __name__ == "__main__":
     main()
