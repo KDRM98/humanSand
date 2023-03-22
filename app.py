@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+import datetime
 import streamlit as st
 import pandas as pd
 
@@ -76,6 +77,11 @@ def main():
     # Check Box
     if st.checkbox('Show/Hide'):
         st.text('보여줘!')
+
+    d = st.date_input(
+        "When\'s your birthday",
+        datetime.date(2019,7,6))
+    st.write('Your birthday is :', d)
 
 if __name__ == "__main__":
     main()
